@@ -7,13 +7,15 @@
 
 import SwiftUI
 
-// MARK: - PROPERTIES
+
 
 
 struct ContentView: View {
+    // MARK: - PROPERTIES
+    @State private var showingInfoView: Bool = false
+    
     
     // MARK: - BODY
-    
     var body: some View {
         
         ZStack{
@@ -32,18 +34,31 @@ struct ContentView: View {
                 // MARK: - SLOT MACHINE
                 SlotMachineView()
                 
-                // SPIN BUTTON
-                Button(action: {
-                    print("Spin")
-                }) {
-                    Image("gfx-spin")
-                        .renderingMode(.original)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(minWidth: 50, idealWidth: 80, maxWidth: 90, minHeight: 55, idealHeight: 75, maxHeight: 85, alignment: .center)
-                        .shadow(color: Color("ColorTransparentBlack"), radius: 0, x: 0, y: 6)
-                }
+                Spacer()
                 
+                HStack{
+                    
+                    // MARK: - Bet System
+                   BetView()
+                    
+                    
+                    Spacer()
+                    
+                    // SPIN BUTTON
+                    Button(action: {
+                        print("Spin")
+                    }) {
+                        Image("gfx-spin")
+                            .renderingMode(.original)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(minWidth: 100, idealWidth: 160, maxWidth: 180, minHeight: 75, idealHeight: 95, maxHeight: 115, alignment: .center)
+                            .shadow(color: Color("ColorTransparentBlack"), radius: 0, x: 0, y: 6)
+                    }
+                    
+                 
+                }
+
                 Spacer()
                 // MARK: - FOOTER
                 
@@ -62,17 +77,17 @@ struct ContentView: View {
             .overlay(
                 // INFO BUTTON
                 Button(action: {
-                    print("Show Info")
+                    self.showingInfoView = true
                 }) {
                     Image(systemName: "info.circle")
                 }
                     .font(.title)
                     .accentColor(Color.black), alignment: .topTrailing
             )
-            
+        }//ZStack
+        .sheet(isPresented: $showingInfoView) {
+            InfoView()
         }
-        
-
     }
 }
 
