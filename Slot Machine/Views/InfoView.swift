@@ -18,6 +18,7 @@ struct InfoView: View {
               .frame(minWidth: 256, idealWidth: 300, maxWidth: 320, minHeight: 112, idealHeight: 130, maxHeight: 140, alignment: .center)
               .padding(.horizontal)
               .shadow(color: Color("ColorTransparentBlack"), radius: 5, x: 0, y: 6)
+              .mask(Circle())
         
         Spacer()
         
