@@ -20,7 +20,7 @@ struct BetView: View {
                         .scaledToFit()
                         .foregroundColor(Color.black)
                         .frame(minWidth: 20, idealWidth: 25, maxWidth: 30, minHeight: 20, idealHeight: 25, maxHeight: 30, alignment: .center)
-                        .shadow(color: Color("ColorTransparentBlack"), radius: 0, x: 0, y: 6)
+                        .shadow(radius: 5)
                 }
                 
                 HStack {
@@ -28,7 +28,7 @@ struct BetView: View {
                         .foregroundColor(Color.yellow)
                         .font(.system(.title, design: .rounded))
                         .fontWeight(.heavy)
-                        .shadow(color: Color("ColorTransparentBlack"), radius: 0, x: 0, y: 3)
+                        .shadow(radius: 5)
                 }
                 .padding(.vertical, 4)
                 .padding(.horizontal, 16)
@@ -46,7 +46,7 @@ struct BetView: View {
                         .scaledToFit()
                         .foregroundColor(Color.black)
                         .frame(minWidth: 20, idealWidth: 25, maxWidth: 30, minHeight: 20, idealHeight: 25, maxHeight: 30, alignment: .center)
-                        .shadow(color: Color("ColorTransparentBlack"), radius: 0, x: 0, y: 6)
+                        .shadow(radius: 5)
                 }
             }
            

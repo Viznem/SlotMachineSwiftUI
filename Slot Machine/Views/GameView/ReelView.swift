@@ -14,13 +14,12 @@ struct ReelView: View {
               .resizable()
               .scaledToFit()
               .frame(minWidth: 50, idealWidth: 80, maxWidth: 90, minHeight: 55, idealHeight: 75, maxHeight: 85, alignment: .center)
-              .shadow(color: Color("ColorTransparentBlack"), radius: 0, x: 0, y: 6)
-            
+              .shadow(radius: 5)
             Image("gfx-seven")
                 .resizable()
                 .scaledToFit()
                 .frame(minWidth: 50, idealWidth: 80, maxWidth: 90, minHeight: 55, idealHeight: 75, maxHeight: 85, alignment: .center)
-                .shadow(color: Color("ColorTransparentBlack"), radius: 0, x: 0, y: 6)
+                .shadow(radius: 5)
         }
     }
 }

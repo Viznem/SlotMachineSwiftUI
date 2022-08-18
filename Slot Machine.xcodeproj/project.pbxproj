@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		671C59CD28AE0D3E00D7393D /* house.riv in Resources */ = {isa = PBXBuildFile; fileRef = 671C59C628AE0D3D00D7393D /* house.riv */; };
+		671C59CE28AE0D3E00D7393D /* confetti.riv in Resources */ = {isa = PBXBuildFile; fileRef = 671C59C728AE0D3D00D7393D /* confetti.riv */; };
+		671C59CF28AE0D3E00D7393D /* check.riv in Resources */ = {isa = PBXBuildFile; fileRef = 671C59C828AE0D3D00D7393D /* check.riv */; };
+		671C59D028AE0D3E00D7393D /* menu_button.riv in Resources */ = {isa = PBXBuildFile; fileRef = 671C59C928AE0D3D00D7393D /* menu_button.riv */; };
+		671C59D128AE0D3E00D7393D /* shapes.riv in Resources */ = {isa = PBXBuildFile; fileRef = 671C59CA28AE0D3D00D7393D /* shapes.riv */; };
+		671C59D228AE0D3E00D7393D /* button.riv in Resources */ = {isa = PBXBuildFile; fileRef = 671C59CB28AE0D3D00D7393D /* button.riv */; };
+		671C59D328AE0D3E00D7393D /* icons.riv in Resources */ = {isa = PBXBuildFile; fileRef = 671C59CC28AE0D3D00D7393D /* icons.riv */; };
+		671C59D528AE1F4900D7393D /* MenuRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671C59D428AE1F4900D7393D /* MenuRow.swift */; };
 		6743F9B428AB5C590061D7EE /* Slot_MachineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6743F9B328AB5C590061D7EE /* Slot_MachineApp.swift */; };
 		6743F9B628AB5C590061D7EE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6743F9B528AB5C590061D7EE /* ContentView.swift */; };
 		6743F9B828AB5C5C0061D7EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6743F9B728AB5C5C0061D7EE /* Assets.xcassets */; };
@@ -31,6 +39,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		671C59C628AE0D3D00D7393D /* house.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = house.riv; sourceTree = "<group>"; };
+		671C59C728AE0D3D00D7393D /* confetti.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = confetti.riv; sourceTree = "<group>"; };
+		671C59C828AE0D3D00D7393D /* check.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = check.riv; sourceTree = "<group>"; };
+		671C59C928AE0D3D00D7393D /* menu_button.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu_button.riv; sourceTree = "<group>"; };
+		671C59CA28AE0D3D00D7393D /* shapes.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = shapes.riv; sourceTree = "<group>"; };
+		671C59CB28AE0D3D00D7393D /* button.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = button.riv; sourceTree = "<group>"; };
+		671C59CC28AE0D3D00D7393D /* icons.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = icons.riv; sourceTree = "<group>"; };
+		671C59D428AE1F4900D7393D /* MenuRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRow.swift; sourceTree = "<group>"; };
 		6743F9B028AB5C590061D7EE /* Slot Machine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Slot Machine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6743F9B328AB5C590061D7EE /* Slot_MachineApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slot_MachineApp.swift; sourceTree = "<group>"; };
 		6743F9B528AB5C590061D7EE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -66,6 +82,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		671C59C528AE0D3D00D7393D /* RiveAssets */ = {
+			isa = PBXGroup;
+			children = (
+				671C59C628AE0D3D00D7393D /* house.riv */,
+				671C59C728AE0D3D00D7393D /* confetti.riv */,
+				671C59C828AE0D3D00D7393D /* check.riv */,
+				671C59C928AE0D3D00D7393D /* menu_button.riv */,
+				671C59CA28AE0D3D00D7393D /* shapes.riv */,
+				671C59CB28AE0D3D00D7393D /* button.riv */,
+				671C59CC28AE0D3D00D7393D /* icons.riv */,
+			);
+			path = RiveAssets;
+			sourceTree = "<group>";
+		};
 		6743F9A728AB5C590061D7EE = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +120,7 @@
 				6743F9D128AB9A870061D7EE /* Sound */,
 				6743F9D628ABA5FE0061D7EE /* LaunchScreen.storyboard */,
 				6743F9B728AB5C5C0061D7EE /* Assets.xcassets */,
+				671C59C528AE0D3D00D7393D /* RiveAssets */,
 				6743F9B928AB5C5C0061D7EE /* Preview Content */,
 			);
 			path = "Slot Machine";
@@ -145,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				67E0246F28ACFC0F00860AD5 /* MenuView.swift */,
+				671C59D428AE1F4900D7393D /* MenuRow.swift */,
 			);
 			path = MenuView;
 			sourceTree = "<group>";
@@ -217,13 +249,20 @@
 				6743F9CA28AB9A2E0061D7EE /* riseup.mp3 in Resources */,
 				6743F9CF28AB9A2E0061D7EE /* spin.mp3 in Resources */,
 				6743F9C928AB9A2E0061D7EE /* chimeup.mp3 in Resources */,
+				671C59D228AE0D3E00D7393D /* button.riv in Resources */,
+				671C59CD28AE0D3E00D7393D /* house.riv in Resources */,
 				6743F9BB28AB5C5C0061D7EE /* Preview Assets.xcassets in Resources */,
 				6743F9D028AB9A2E0061D7EE /* win.mp3 in Resources */,
+				671C59D328AE0D3E00D7393D /* icons.riv in Resources */,
 				6743F9B828AB5C5C0061D7EE /* Assets.xcassets in Resources */,
 				6743F9CD28AB9A2E0061D7EE /* background-music.mp3 in Resources */,
+				671C59CE28AE0D3E00D7393D /* confetti.riv in Resources */,
 				6743F9CE28AB9A2E0061D7EE /* game-over.mp3 in Resources */,
 				6743F9D728ABA5FE0061D7EE /* LaunchScreen.storyboard in Resources */,
+				671C59CF28AE0D3E00D7393D /* check.riv in Resources */,
+				671C59D128AE0D3E00D7393D /* shapes.riv in Resources */,
 				6743F9CC28AB9A2E0061D7EE /* casino-chips.mp3 in Resources */,
+				671C59D028AE0D3E00D7393D /* menu_button.riv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +282,7 @@
 				6743F9D928ABB2640061D7EE /* HeaderView.swift in Sources */,
 				6743F9B428AB5C590061D7EE /* Slot_MachineApp.swift in Sources */,
 				67E0246228ACE9BF00860AD5 /* BetView.swift in Sources */,
+				671C59D528AE1F4900D7393D /* MenuRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

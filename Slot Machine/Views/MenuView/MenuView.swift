@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
-
+import RiveRuntime
 struct MenuView: View {
+    @State var selectedMenu: SelectedMenu = .home
+    let icon = RiveViewModel(fileName: "icons", stateMachineName: "HOME_interactivity", artboardName: "HOME")
+    
     var body: some View {
         VStack{
             HStack{
@@ -28,8 +31,20 @@ struct MenuView: View {
                 
             }//HStack
             .padding()
-            Spacer()
             
+            VStack{
+                Rectangle()
+                    .frame(height:1)
+                    .opacity(0.5)
+                    .padding(.horizontal)
+                ForEach(menuItems) { item in
+                    MenuRow(item: item, selectedMenu: $selectedMenu)
+                }
+            }
+             .padding(8)
+            
+
+            Spacer()
         }//VStack
         .foregroundColor(.white)
         .frame(maxWidth: 288, maxHeight: .infinity)
@@ -39,8 +54,28 @@ struct MenuView: View {
     }
 }
 
+struct MenuItem: Identifiable {
+    var id = UUID()
+    var text: String
+    var icon: RiveViewModel
+    var menu: SelectedMenu
+}
+
+var menuItems = [
+    MenuItem(text: "Home", icon: RiveViewModel(fileName: "icons", stateMachineName: "HOME_interactivity", artboardName: "HOME"), menu: .home),
+    MenuItem(text: "LeaderBoard", icon: RiveViewModel(fileName: "icons", stateMachineName: "STAR_Interactivity", artboardName: "LIKE/STAR"), menu: .leaderBoard),
+    MenuItem(text: "Help", icon: RiveViewModel(fileName: "icons", stateMachineName: "CHAT_Interactivity", artboardName: "CHAT"), menu: .help),
+]
+
+enum SelectedMenu: String {
+    case home
+    case leaderBoard
+    case help
+}
+
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
         MenuView()
     }
 }
+

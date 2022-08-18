@@ -21,7 +21,7 @@ struct ScoreView: View {
                     .foregroundColor(Color.yellow)
                     .font(.system(.title, design: .rounded))
                     .fontWeight(.heavy)
-                    .shadow(color: Color("ColorTransparentBlack"), radius: 0, x: 0, y: 3)
+                    .shadow(radius: 5)
                     .layoutPriority(1)
             }
             .padding(.vertical, 4)
@@ -40,7 +40,7 @@ struct ScoreView: View {
                       .foregroundColor(Color.yellow)
                       .font(.system(.title, design: .rounded))
                       .fontWeight(.heavy)
-                      .shadow(color: Color("ColorTransparentBlack"), radius: 0, x: 0, y: 3)
+                      .shadow(radius: 5)
                       .layoutPriority(1)
                 
               Text("Highest\nScore".uppercased())
