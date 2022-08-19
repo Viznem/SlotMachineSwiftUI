@@ -22,7 +22,7 @@ struct ContentView: View {
             ZStack{
                 Color(.black).ignoresSafeArea()
                 
-                MenuView(menuOption: $menuOption)
+                MenuView(menuOption: $menuOption, isOpen: $isOpen)
                     .opacity(isOpen ? 1 : 0)
                     .offset(x: isOpen ? 0 : -300)
                     .rotation3DEffect(.degrees(isOpen ? 0 : 30), axis: (x: 0, y: -1, z: 0))
@@ -31,9 +31,9 @@ struct ContentView: View {
                 case "Home":
                     GameView(isOpen: $isOpen)
                 case "LeaderBoard":
-                    Text("leader board").foregroundColor(Color.white)
+                    LeaderBoardView(isOpen: $isOpen)
                 case "Help":
-                    Text("Guide").foregroundColor(Color.white)
+                    GuideView(isOpen: $isOpen)
                 default:
                     Text("404").foregroundColor(Color.white)
                 }
@@ -63,6 +63,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .previewInterfaceOrientation(.portraitUpsideDown)
+            .previewInterfaceOrientation(.portrait)
     }
 }

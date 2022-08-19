@@ -34,6 +34,8 @@
 		6743F9DF28ABBBD30061D7EE /* ReelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6743F9DE28ABBBD30061D7EE /* ReelView.swift */; };
 		67AD73F728AF756C0024E8D1 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 67AD73F628AF756C0024E8D1 /* RiveRuntime */; };
 		67AD73FB28AF923F0024E8D1 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD73FA28AF923F0024E8D1 /* GameView.swift */; };
+		67AD73FE28AF9E660024E8D1 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD73FD28AF9E660024E8D1 /* GuideView.swift */; };
+		67AD740028AF9F8F0024E8D1 /* LeaderBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD73FF28AF9F8F0024E8D1 /* LeaderBoardView.swift */; };
 		67E0246228ACE9BF00860AD5 /* BetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E0246128ACE9BF00860AD5 /* BetView.swift */; };
 		67E0246528ACF08D00860AD5 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E0246428ACF08D00860AD5 /* InfoView.swift */; };
 		67E0247028ACFC0F00860AD5 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E0246F28ACFC0F00860AD5 /* MenuView.swift */; };
@@ -68,6 +70,8 @@
 		6743F9DC28ABBB410061D7EE /* SlotMachineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotMachineView.swift; sourceTree = "<group>"; };
 		6743F9DE28ABBBD30061D7EE /* ReelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReelView.swift; sourceTree = "<group>"; };
 		67AD73FA28AF923F0024E8D1 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		67AD73FD28AF9E660024E8D1 /* GuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
+		67AD73FF28AF9F8F0024E8D1 /* LeaderBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardView.swift; sourceTree = "<group>"; };
 		67E0246128ACE9BF00860AD5 /* BetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetView.swift; sourceTree = "<group>"; };
 		67E0246428ACF08D00860AD5 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		67E0246F28ACFC0F00860AD5 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -156,9 +160,12 @@
 		6743F9D228AB9ABB0061D7EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				67E0246428ACF08D00860AD5 /* InfoView.swift */,
-				67E0246E28ACFB5000860AD5 /* MenuView */,
+				6743F9B528AB5C590061D7EE /* ContentView.swift */,
 				67E0246328ACECA100860AD5 /* GameView */,
+				67E0246E28ACFB5000860AD5 /* MenuView */,
+				67E0246428ACF08D00860AD5 /* InfoView.swift */,
+				67AD73FD28AF9E660024E8D1 /* GuideView.swift */,
+				67AD73FF28AF9F8F0024E8D1 /* LeaderBoardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -166,13 +173,12 @@
 		67E0246328ACECA100860AD5 /* GameView */ = {
 			isa = PBXGroup;
 			children = (
-				6743F9B528AB5C590061D7EE /* ContentView.swift */,
+				67AD73FA28AF923F0024E8D1 /* GameView.swift */,
 				6743F9D828ABB2640061D7EE /* HeaderView.swift */,
 				6743F9DA28ABB75E0061D7EE /* ScoreView.swift */,
 				6743F9DC28ABBB410061D7EE /* SlotMachineView.swift */,
 				6743F9DE28ABBBD30061D7EE /* ReelView.swift */,
 				67E0246128ACE9BF00860AD5 /* BetView.swift */,
-				67AD73FA28AF923F0024E8D1 /* GameView.swift */,
 			);
 			path = GameView;
 			sourceTree = "<group>";
@@ -283,12 +289,14 @@
 				67E0246528ACF08D00860AD5 /* InfoView.swift in Sources */,
 				6743F9DF28ABBBD30061D7EE /* ReelView.swift in Sources */,
 				6743F9DD28ABBB410061D7EE /* SlotMachineView.swift in Sources */,
+				67AD73FE28AF9E660024E8D1 /* GuideView.swift in Sources */,
 				6743F9B628AB5C590061D7EE /* ContentView.swift in Sources */,
 				67E0247028ACFC0F00860AD5 /* MenuView.swift in Sources */,
 				6743F9DB28ABB75E0061D7EE /* ScoreView.swift in Sources */,
 				6743F9D928ABB2640061D7EE /* HeaderView.swift in Sources */,
 				6743F9B428AB5C590061D7EE /* Slot_MachineApp.swift in Sources */,
 				67E0246228ACE9BF00860AD5 /* BetView.swift in Sources */,
+				67AD740028AF9F8F0024E8D1 /* LeaderBoardView.swift in Sources */,
 				67AD73FB28AF923F0024E8D1 /* GameView.swift in Sources */,
 				671C59D528AE1F4900D7393D /* MenuRow.swift in Sources */,
 			);

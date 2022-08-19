@@ -10,6 +10,7 @@ import RiveRuntime
 struct MenuView: View {
     @State var selectedMenu: SelectedMenu = .home
     @Binding var menuOption: String
+    @Binding var isOpen: Bool
     let icon = RiveViewModel(fileName: "icons", stateMachineName: "HOME_interactivity", artboardName: "HOME")
     
     var body: some View {
@@ -42,7 +43,7 @@ struct MenuView: View {
                     
                         ForEach(menuItems) { item in
                            
-                            MenuRow(item: item, selectedMenu: $selectedMenu, menuOption: $menuOption)
+                            MenuRow(item: item, selectedMenu: $selectedMenu, menuOption: $menuOption, isOpen: $isOpen)
                          
                         }
                     
