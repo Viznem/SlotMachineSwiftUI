@@ -10,6 +10,7 @@ import SwiftUI
 struct MenuRow: View {
     var item: MenuItem
     @Binding var selectedMenu: SelectedMenu
+    @Binding var menuOption: String
     
     var body: some View {
         HStack(spacing:14){
@@ -34,6 +35,7 @@ struct MenuRow: View {
              }
              withAnimation(.timingCurve(0.2, 0.8, 0.2, 1)) {
                  selectedMenu = item.menu
+                 menuOption = item.text
              }
         }
     }
@@ -41,6 +43,6 @@ struct MenuRow: View {
 
 struct MenuRow_Previews: PreviewProvider {
     static var previews: some View {
-        MenuRow(item: menuItems[0], selectedMenu: .constant(.home))
+        MenuRow(item: menuItems[0], selectedMenu: .constant(.home), menuOption: .constant("Home"))
     }
 }

@@ -9,49 +9,56 @@ import SwiftUI
 import RiveRuntime
 struct MenuView: View {
     @State var selectedMenu: SelectedMenu = .home
+    @Binding var menuOption: String
     let icon = RiveViewModel(fileName: "icons", stateMachineName: "HOME_interactivity", artboardName: "HOME")
     
     var body: some View {
-        VStack{
-            HStack{
-                Image("rmit-casino-logo-blue-bg")
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                    .mask(Circle())
-                
-                VStack(alignment: .leading, spacing: 2){
-                    Text("RMIT CASINO")
-                        .font(.body)
-                        .bold()
-                    Text("Win big or Lose all")
-                        .font(.subheadline)
-                        .opacity(0.7)
-                }
-                Spacer()
-                
-            }//HStack
-            .padding()
-            
             VStack{
-                Rectangle()
-                    .frame(height:1)
-                    .opacity(0.5)
-                    .padding(.horizontal)
-                ForEach(menuItems) { item in
-                    MenuRow(item: item, selectedMenu: $selectedMenu)
-                }
-            }
-             .padding(8)
-            
+                HStack{
+                    Image("rmit-casino-logo-blue-bg")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .mask(Circle())
+                    
+                    VStack(alignment: .leading, spacing: 2){
+                        Text("RMIT CASINO")
+                            .font(.body)
+                            .bold()
+                        Text("Win big or Lose all")
+                            .font(.subheadline)
+                            .opacity(0.7)
+                    }
+                    Spacer()
+                    
+                }//HStack
+                .padding()
+                
+                VStack{
+                    
+                    Rectangle()
+                        .frame(height:1)
+                        .opacity(0.5)
+                        .padding(.horizontal)
+                    
+                        ForEach(menuItems) { item in
+                           
+                            MenuRow(item: item, selectedMenu: $selectedMenu, menuOption: $menuOption)
+                         
+                        }
+                    
 
-            Spacer()
-        }//VStack
-        .foregroundColor(.white)
-        .frame(maxWidth: 288, maxHeight: .infinity)
-        .background(Color.black)
-        .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
-        .frame(maxWidth: .infinity, alignment: .leading)
-    }
+                }
+                 .padding(8)
+                
+
+                Spacer()
+            }//VStack
+            .foregroundColor(.white)
+            .frame(maxWidth: 288, maxHeight: .infinity)
+            .background(Color.black)
+            .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
 }
 
 struct MenuItem: Identifiable {
@@ -73,9 +80,9 @@ enum SelectedMenu: String {
     case help
 }
 
-struct MenuView_Previews: PreviewProvider {
-    static var previews: some View {
-        MenuView()
-    }
-}
+//struct MenuView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MenuView()
+//    }
+//}
 
