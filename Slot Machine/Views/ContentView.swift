@@ -16,13 +16,14 @@ struct ContentView: View {
     
     let menuButton = RiveViewModel(fileName: "menu_button", stateMachineName: "State Machine", autoPlay: false)
     
+    
     // MARK: - BODY
     var body: some View {
             
             ZStack{
                 Color(.black).ignoresSafeArea()
                 
-                MenuView(menuOption: $menuOption, isOpen: $isOpen)
+                MenuView(menuOption: $menuOption)
                     .opacity(isOpen ? 1 : 0)
                     .offset(x: isOpen ? 0 : -300)
                     .rotation3DEffect(.degrees(isOpen ? 0 : 30), axis: (x: 0, y: -1, z: 0))

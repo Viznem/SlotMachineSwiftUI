@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ScoreView: View {
+    @Binding var coins: Int
+    @Binding var highestScore: Int
+    
     var body: some View {
         
         HStack{
@@ -17,7 +20,7 @@ struct ScoreView: View {
                     .font(.system(size: 10, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.trailing)
               
-              Text("100")
+              Text("\(coins)")
                     .foregroundColor(Color.yellow)
                     .font(.system(.title, design: .rounded))
                     .fontWeight(.heavy)
@@ -36,7 +39,7 @@ struct ScoreView: View {
             
             HStack {
                 
-                Text("500")
+              Text("\(highestScore)")
                       .foregroundColor(Color.yellow)
                       .font(.system(.title, design: .rounded))
                       .fontWeight(.heavy)
@@ -64,6 +67,6 @@ struct ScoreView: View {
 
 struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreView()
+        ScoreView(coins: .constant(100), highestScore: .constant(0))
     }
 }

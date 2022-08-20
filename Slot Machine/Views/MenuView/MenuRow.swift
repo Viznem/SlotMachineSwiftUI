@@ -11,7 +11,6 @@ struct MenuRow: View {
     var item: MenuItem
     @Binding var selectedMenu: SelectedMenu
     @Binding var menuOption: String
-    @Binding var isOpen: Bool
     
     var body: some View {
         HStack(spacing:14){
@@ -44,6 +43,6 @@ struct MenuRow: View {
 
 struct MenuRow_Previews: PreviewProvider {
     static var previews: some View {
-        MenuRow(item: menuItems[0], selectedMenu: .constant(.home), menuOption: .constant("Home"), isOpen: .constant(true))
+        MenuRow(item: menuItems[0], selectedMenu: .constant(.home), menuOption: .constant("Home"))
     }
 }
