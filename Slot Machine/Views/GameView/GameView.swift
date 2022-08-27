@@ -7,7 +7,10 @@
 
 import SwiftUI
 
+
+
 struct GameView: View {
+    
     @State private var showingInfoView: Bool = false
     @State private var showingModal: Bool = false
     @State private var coins: Int = 100

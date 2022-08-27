@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LeaderBoardView: View {
     @Binding var isOpen: Bool
+    @Binding var leaderboardList: [Player]
     
     var body: some View {
         
@@ -36,6 +37,6 @@ struct LeaderBoardView: View {
 
 struct LeaderBoardView_Previews: PreviewProvider {
     static var previews: some View {
-        LeaderBoardView(isOpen: .constant(false))
+        LeaderBoardView(isOpen: .constant(false), leaderboardList: .constant([Player(name: "Thinh", highestScore: 999999)]))
     }
 }

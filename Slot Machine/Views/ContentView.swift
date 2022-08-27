@@ -10,6 +10,7 @@ import RiveRuntime
 
 struct ContentView: View {
     // MARK: - PROPERTIES
+    @State var leaderboardList: [Player] = [Player(name: "Thinh", highestScore: 999999)]
     @State var menuOption: String = "Home"
     @State var isGameView = false
     @State var isOpen = false
@@ -32,7 +33,7 @@ struct ContentView: View {
                 case "Home":
                     GameView(isOpen: $isOpen)
                 case "LeaderBoard":
-                    LeaderBoardView(isOpen: $isOpen)
+                    LeaderBoardView(isOpen: $isOpen, leaderboardList: $leaderboardList)
                 case "Help":
                     GuideView(isOpen: $isOpen)
                 default:
@@ -59,7 +60,11 @@ struct ContentView: View {
     }
 }
 
-
+struct Player: Identifiable {
+    let id = UUID()
+    let name: String
+    let highestScore: Int
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

@@ -12,6 +12,7 @@ struct SlotMachineView: View {
     @State private var reels: Array = [0, 1, 2, 0, 1, 2, 3, 1, 2, 3]
     @State public var highestScore: Int = 0
     @State public var betAmount: Int = 10
+    @State public var pityCount: Int = 0
     
     @Binding var showingModal: Bool
     @Binding public var coins: Int
@@ -21,9 +22,17 @@ struct SlotMachineView: View {
     
     // Spin
     func spin() {
-        reels = reels.map({ _ in
-            Int.random(in: 0...symbols.count - 1)
-        })
+        if pityCount == 10 {
+            reels = reels.map({ _ in
+                Int.random(in: 0...0)
+            })
+            pityCount = 0;
+        }else{
+            reels = reels.map({ _ in
+                Int.random(in: 0...symbols.count - 1)
+            })
+            pityCount += 1;
+        }
     }
     
     // Winning Condition
@@ -62,11 +71,11 @@ struct SlotMachineView: View {
 
     // Player wins
     func playerWinBig() {
-        coins += betAmount * 1000
+        coins += betAmount * 10
     }
     
     func playerWinSmall() {
-        coins += betAmount * 10
+        coins += betAmount * 3
     }
     
     // New High Score
@@ -83,6 +92,7 @@ struct SlotMachineView: View {
     func gameOver() {
         if coins <= 0 {
             showingModal = true
+            pityCount = 0
         }
     }
     
