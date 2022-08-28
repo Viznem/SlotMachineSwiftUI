@@ -12,26 +12,51 @@ struct LeaderBoardView: View {
     @Binding var leaderboardList: [Player]
     
     var body: some View {
-        
+        let sortedLeaderboard = leaderboardList.sorted(by: {$0.highestScore > $1.highestScore})
         ZStack{
             // MARK: - BACKGROUND
             Color(red: 0.9882352941, green: 0.7607843137, blue: 0).ignoresSafeArea(.all)
             
             // MARK: - INTERFACE
-            VStack(alignment: .center, spacing: 5) {
+            VStack(alignment: .center, spacing: 10) {
                 
                 // MARK: - HEADER
-                Text("LEADERBOARD").font(.headline)
+                Text("LEADERBOARD")
+                    .font(.system(.title, design: .rounded))
+                    .fontWeight(.heavy)
+                    .padding(.top, 50)
+                    .padding(.bottom, 20)
                 
-                ForEach(leaderboardList) {player in
+                ForEach(sortedLeaderboard) {player in
                     HStack{
+                        Spacer()
                         Text(player.name)
+                            .foregroundColor(Color.yellow)
+                            .font(.system(.title, design: .rounded))
+                            .fontWeight(.heavy)
+                            .shadow(radius: 5)
+                        
+                        Spacer()
+                        
                         Text("\(player.highestScore)")
+                            .foregroundColor(Color.yellow)
+                            .font(.system(.title, design: .rounded))
+                            .fontWeight(.heavy)
+                            .shadow(radius: 5)
+                        Spacer()
                     }
+                    .padding(.vertical, 4)
+                    .padding(.horizontal, 16)
+                    .frame(minWidth: 128)
+                    .background(
+                        Capsule()
+                        .foregroundColor(Color.black)
+                    )
                 }
                
-            
+            Spacer()
             }//VStack
+            .padding()
             
             
         }//ZStack
