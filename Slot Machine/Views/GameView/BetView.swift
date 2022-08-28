@@ -8,21 +8,36 @@
 import SwiftUI
 
 struct BetView: View {
+    let haptics = UINotificationFeedbackGenerator()
     @Binding var betAmount: Int
     @State var disableMinusButton: Bool = true
     @State var disableAddButton: Bool = false
+    @State var changingBet: Bool = false
     
     var body: some View {
         VStack{
             
             HStack{
                 Button(action: {
+                    withAnimation{
+                        self.changingBet = false
+                    }
+                    
                     if betAmount > 10 {
                         betAmount -= 10
                         disableAddButton = false
-                    }else{
-                        disableMinusButton = true
+                        playSound(sound: "casino-chips", type: "mp3")
+                        haptics.notificationOccurred(.success)
+                        
+                        if betAmount <= 10{
+                            disableMinusButton = true
+                        }
                     }
+                    
+                    withAnimation{
+                        self.changingBet = true
+                    }
+               
                 }){
                     Image(systemName: "minus.circle.fill")
                         .resizable()
@@ -49,12 +64,25 @@ struct BetView: View {
                 )
                 
                 Button(action: {
+                    withAnimation{
+                        self.changingBet = true
+                    }
+                    
                     if betAmount < 30 {
                         betAmount += 10
                         disableMinusButton = false
-                    }else{
-                        disableAddButton = true
+                        playSound(sound: "casino-chips", type: "mp3")
+                        haptics.notificationOccurred(.success)
+                        
+                        if betAmount >= 30{
+                            disableAddButton = true
+                        }
                     }
+                    
+                    withAnimation{
+                        self.changingBet = false
+                    }
+                    
                 }){
                     Image(systemName: "plus.circle.fill")
                         .resizable()
@@ -73,6 +101,12 @@ struct BetView: View {
                       .resizable()
                       .scaledToFit()
                       .frame(height: 50)
+                      .opacity(changingBet ? 1 : 0)
+                      .offset(y: changingBet ? 0 : -50)
+                      .animation(.easeOut(duration: 0.8), value: changingBet)
+                      .onAppear {
+                          self.changingBet.toggle()
+                      }
                 }
             }.padding()
             

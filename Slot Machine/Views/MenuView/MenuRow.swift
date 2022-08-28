@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MenuRow: View {
     var item: MenuItem
+    let haptics = UINotificationFeedbackGenerator()
     @Binding var selectedMenu: SelectedMenu
     @Binding var menuOption: String
     
@@ -37,6 +38,8 @@ struct MenuRow: View {
                  selectedMenu = item.menu
                  menuOption = item.text
              }
+             playSound(sound: "uwu", type: "mp3")
+             haptics.notificationOccurred(.success)
         }
     }
 }

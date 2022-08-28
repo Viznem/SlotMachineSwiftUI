@@ -28,6 +28,7 @@ struct ContentView: View {
                     .opacity(isOpen ? 1 : 0)
                     .offset(x: isOpen ? 0 : -300)
                     .rotation3DEffect(.degrees(isOpen ? 0 : 30), axis: (x: 0, y: -1, z: 0))
+                   
                 
                 switch menuOption{
                 case "Home":
@@ -53,7 +54,7 @@ struct ContentView: View {
                         withAnimation(.spring(response: 0.5, dampingFraction: 0.7)){
                             isOpen.toggle()
                         }
-                        
+                        playSound(sound: "ding", type: "mp3")
                 }
             
         }

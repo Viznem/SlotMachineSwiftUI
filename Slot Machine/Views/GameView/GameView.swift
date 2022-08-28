@@ -16,9 +16,16 @@ struct GameView: View {
     @State private var coins: Int = 100
     @State public var playerName: String = ""
     @State public var highestScore: Int = 0
+    @State private var animatingModal: Bool = false
     
     @Binding var isOpen: Bool
     @Binding var leaderboardList: [Player]
+    
+    func resetGame(){
+        highestScore = 0
+        coins = 100
+        playSound(sound: "chimeup", type: "mp3")
+    }
     
     var body: some View {
         ZStack{
@@ -29,42 +36,44 @@ struct GameView: View {
             VStack(alignment: .center, spacing: 5) {
                 
                 // MARK: - HEADER
-                HeaderView().padding(.top, 30)
+                HeaderView().padding(.top, 50)
                 
-                Button(action: {
-                    print("Reset game")
-                }) {
-                    Image(systemName: "arrow.2.circlepath.circle")
+                HStack{
+            
+                    //Reset button
+                    Button(action: {
+                        self.resetGame()
+                    }) {
+                        Image(systemName: "arrow.2.circlepath.circle")
+                            .font(.title)
+                            .accentColor(Color.black)
+                    }
+                 
+                    //Info button
+                    Button(action: {
+                        self.showingInfoView = true
+                    }) {
+                        Image(systemName: "info.circle")
+                    }
                         .font(.title)
                         .accentColor(Color.black)
-                }
-
+                    
+                }//HStack
+                
                 
                 // MARK: - SLOT MACHINE
-                SlotMachineView(showingModal: $showingModal, coins: $coins, highestScore: $highestScore)
+                SlotMachineView(showingModal: $showingModal, coins: $coins, highestScore: $highestScore).padding()
                 
                 Spacer()
                 
             
             }//VStack
-            .overlay(
-                // INFO BUTTON
-                Button(action: {
-                    self.showingInfoView = true
-                }) {
-                    Image(systemName: "info.circle")
-                }
-                    .font(.title)
-                    .accentColor(Color.black), alignment: .topTrailing
-            ).padding()
-                .frame(maxWidth: 720)
-                .blur(radius: $showingModal.wrappedValue ? 5 : 0, opaque: false)
+            
             
             
             // MARK: - POPUP MODAL
-            if $showingModal.wrappedValue {
+            if self.showingModal{
                 ZStack{
-                    
                     
                     // MODAL
                     VStack(spacing: 0){
@@ -106,15 +115,10 @@ struct GameView: View {
                                 Spacer()
                             }
                           
-                                
-                            
-                          
                           Button(action: {
                               self.showingModal = false
-//                            self.animatingModal = false
-//                            self.activateBet10()
+                              self.animatingModal = false
                               self.coins = 100
-                              
                               
                               if self.highestScore > 100 {
                                   if playerName != "" {
@@ -122,9 +126,9 @@ struct GameView: View {
                                   }else{
                                       leaderboardList.append(Player(name: "Anonymous", highestScore: self.highestScore))
                                   }
-                                  self.highestScore = 0
                               }
-                              
+                             
+                              self.highestScore = 0
                           }) {
                             Text("New Game".uppercased())
                               .font(.system(.body, design: .rounded))
@@ -143,7 +147,7 @@ struct GameView: View {
                         
                         Spacer()
                         
-                    }
+                    }//VStack
                     .frame(minWidth: 280, idealWidth: 280, maxWidth: 320, minHeight: 260, idealHeight: 280, maxHeight: 320, alignment: .top)
                     .background(.white)
                     .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))
@@ -152,13 +156,12 @@ struct GameView: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 20, style: .continuous)
                             .stroke(.linearGradient(colors: [.white.opacity(0.8), .white.opacity(0.1)], startPoint: .topLeading, endPoint: .bottomTrailing)))
-                    .padding()
-//                    .opacity($animatingModal.wrappedValue ? 1 : 0)
-//                    .offset(y: $animatingModal.wrappedValue ? 0 : -100)
-//                    .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0), value: showingModal)
-//                    .onAppear(perform: {
-//                      self.animatingModal = true
-//                    })
+                    .opacity(animatingModal ? 1 : 0)
+                    .offset(y: animatingModal ? 0 : -100)
+                    .animation(.spring(response: 0.6, dampingFraction: 0.4, blendDuration: 0.6), value: animatingModal)
+                    .onAppear(perform: {
+                        self.animatingModal = true
+                    })
                 }
             }
                 

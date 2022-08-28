@@ -9,9 +9,11 @@ import SwiftUI
 
 struct SlotMachineView: View {
     let symbols = ["gfx-bell", "gfx-cherry", "gfx-coin", "gfx-grape", "gfx-seven", "gfx-strawberry"]
+    let haptics = UINotificationFeedbackGenerator()
     @State private var reels: Array = [0, 1, 2, 0, 1, 2, 3, 1, 2, 3]
     @State public var betAmount: Int = 10
     @State public var pityCount: Int = 0
+    @State private var animatingSymbol: Bool = false
     
     @Binding var showingModal: Bool
     @Binding public var coins: Int
@@ -32,6 +34,8 @@ struct SlotMachineView: View {
             })
             pityCount += 1;
         }
+        playSound(sound: "spin", type: "mp3")
+        haptics.notificationOccurred(.success)
     }
     
     // Winning Condition
@@ -71,10 +75,12 @@ struct SlotMachineView: View {
     // Player wins
     func playerWinBig() {
         coins += betAmount * 10
+        playSound(sound: "high-score", type: "mp3")
     }
     
     func playerWinSmall() {
         coins += betAmount * 3
+        playSound(sound: "win", type: "mp3")
     }
     
     // New High Score
@@ -92,8 +98,11 @@ struct SlotMachineView: View {
         if coins <= 0 {
             showingModal = true
             pityCount = 0
+            playSound(sound: "game-over", type: "mp3")
         }
     }
+    
+   
     
     var body: some View {
         
@@ -105,19 +114,19 @@ struct SlotMachineView: View {
                 ScoreView(coins: $coins, highestScore: $highestScore).padding(.bottom, 20)
                 
                 HStack{
-                    ReelView(symbol: $reels[0])
-                    ReelView(symbol: $reels[1])
-                    ReelView(symbol: $reels[2])
+                    ReelView(symbol: $reels[0], animatingSymbol: $animatingSymbol)
+                    ReelView(symbol: $reels[1], animatingSymbol: $animatingSymbol)
+                    ReelView(symbol: $reels[2], animatingSymbol: $animatingSymbol)
                 }
                 HStack{
-                    ReelView(symbol: $reels[3])
-                    ReelView(symbol: $reels[4])
-                    ReelView(symbol: $reels[5])
+                    ReelView(symbol: $reels[3], animatingSymbol: $animatingSymbol)
+                    ReelView(symbol: $reels[4], animatingSymbol: $animatingSymbol)
+                    ReelView(symbol: $reels[5], animatingSymbol: $animatingSymbol)
                 }
                 HStack{
-                    ReelView(symbol: $reels[6])
-                    ReelView(symbol: $reels[7])
-                    ReelView(symbol: $reels[8])
+                    ReelView(symbol: $reels[6], animatingSymbol: $animatingSymbol)
+                    ReelView(symbol: $reels[7], animatingSymbol: $animatingSymbol)
+                    ReelView(symbol: $reels[8], animatingSymbol: $animatingSymbol)
                 }
                 
                 HStack{
@@ -129,11 +138,26 @@ struct SlotMachineView: View {
                             
                     // SPIN BUTTON
                     Button(action: {
-                        self.gameOver()
+                        // 1. SET DEFAULT STATE: No animation
+                        withAnimation{
+                            self.animatingSymbol = false
+                        }
                         
+                        // 2. SPIN with changing the symbols
                         self.spin()
                         
+                        
+                        // 3. Trigger animation after changing symbols
+                        withAnimation{
+                            self.animatingSymbol = true
+                        }
+                        
+                        // 4.Check winning
                         self.checkWinning()
+                        
+                        //5. Check gameover
+                        self.gameOver()
+                        
                     }) {
                         Image("gfx-spin")
                             .renderingMode(.original)
