@@ -10,13 +10,12 @@ import SwiftUI
 struct SlotMachineView: View {
     let symbols = ["gfx-bell", "gfx-cherry", "gfx-coin", "gfx-grape", "gfx-seven", "gfx-strawberry"]
     @State private var reels: Array = [0, 1, 2, 0, 1, 2, 3, 1, 2, 3]
-    @State public var highestScore: Int = 0
     @State public var betAmount: Int = 10
     @State public var pityCount: Int = 0
     
     @Binding var showingModal: Bool
     @Binding public var coins: Int
-
+    @Binding public var highestScore: Int
     
     // MARK: - FUNCTIONS
     
@@ -154,6 +153,6 @@ struct SlotMachineView: View {
 
 struct SlotMachineView_Previews: PreviewProvider {
     static var previews: some View {
-        SlotMachineView(showingModal: .constant(true), coins: .constant(100))
+        SlotMachineView(showingModal: .constant(true), coins: .constant(100), highestScore: .constant(0))
     }
 }

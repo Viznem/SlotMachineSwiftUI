@@ -22,6 +22,14 @@ struct LeaderBoardView: View {
                 
                 // MARK: - HEADER
                 Text("LEADERBOARD").font(.headline)
+                
+                ForEach(leaderboardList) {player in
+                    HStack{
+                        Text(player.name)
+                        Text("\(player.highestScore)")
+                    }
+                }
+               
             
             }//VStack
             

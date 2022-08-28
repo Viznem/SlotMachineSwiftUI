@@ -31,7 +31,7 @@ struct ContentView: View {
                 
                 switch menuOption{
                 case "Home":
-                    GameView(isOpen: $isOpen)
+                    GameView(isOpen: $isOpen, leaderboardList: $leaderboardList)
                 case "LeaderBoard":
                     LeaderBoardView(isOpen: $isOpen, leaderboardList: $leaderboardList)
                 case "Help":
