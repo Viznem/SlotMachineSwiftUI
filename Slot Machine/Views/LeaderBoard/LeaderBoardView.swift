@@ -27,80 +27,83 @@ struct LeaderBoardView: View {
             Color(red: 0.9882352941, green: 0.7607843137, blue: 0).ignoresSafeArea(.all)
             
             // MARK: - INTERFACE
-            VStack(alignment: .center, spacing: 10) {
-                
-                // MARK: - HEADER
-                Text("LEADERBOARD")
-                    .font(.system(.title, design: .rounded))
-                    .fontWeight(.heavy)
-                    .padding(.top, 50)
-                    .padding(.bottom, 20)
-                    .foregroundColor(Color("ColorDark"))
-                
-                
-                    ForEach(sortedLeaderboard) {player in
+            ScrollView{
+                VStack(alignment: .center, spacing: 10) {
+                    
+                    // MARK: - HEADER
+                    Text("LEADERBOARD")
+                        .font(.system(.title, design: .rounded))
+                        .fontWeight(.heavy)
+                        .padding(.top, 50)
+                        .padding(.bottom, 20)
+                        .foregroundColor(Color("ColorDark"))
+                    
+                    
+                        ForEach(sortedLeaderboard) {player in
 
-                            VStack{
-                                HStack{
+                                VStack{
+                                    HStack{
+                                        
+                                        if player.highestScore == sortedLeaderboard[0].highestScore {
+                                            Image("first")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 40, height: 40, alignment: .leading)
+                                        }else if player.highestScore == sortedLeaderboard[1].highestScore{
+                                            Image("second")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 40, height: 40, alignment: .leading)
+                                        }else if player.highestScore == sortedLeaderboard[2].highestScore{
+                                            Image("third")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 40, height: 40, alignment: .leading)
+                                        }
+                                        
+                                        
+                                        Spacer()
+                                        Text(player.name)
+                                            .foregroundColor(Color.yellow)
+                                            .font(.system(.title, design: .rounded))
+                                            .fontWeight(.heavy)
+                                            .shadow(radius: 5)
+                                        
+                                        Spacer()
+                                        
+                                        Text("\(player.highestScore)")
+                                            .foregroundColor(Color.yellow)
+                                            .font(.system(.title, design: .rounded))
+                                            .fontWeight(.heavy)
+                                            .shadow(radius: 5)
+                                        Spacer()
+                                    }//HStack
                                     
-                                    if player.highestScore == sortedLeaderboard[0].highestScore {
-                                        Image("first")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 40, height: 40, alignment: .leading)
-                                    }else if player.highestScore == sortedLeaderboard[1].highestScore{
-                                        Image("second")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 40, height: 40, alignment: .leading)
-                                    }else if player.highestScore == sortedLeaderboard[2].highestScore{
-                                        Image("third")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 40, height: 40, alignment: .leading)
+                                    if isShowing {
+                                        AchievementView(playerScore: player.highestScore)
                                     }
                                     
-                                    
-                                    Spacer()
-                                    Text(player.name)
-                                        .foregroundColor(Color.yellow)
-                                        .font(.system(.title, design: .rounded))
-                                        .fontWeight(.heavy)
-                                        .shadow(radius: 5)
-                                    
-                                    Spacer()
-                                    
-                                    Text("\(player.highestScore)")
-                                        .foregroundColor(Color.yellow)
-                                        .font(.system(.title, design: .rounded))
-                                        .fontWeight(.heavy)
-                                        .shadow(radius: 5)
-                                    Spacer()
-                                }//HStack
-                                
-                                if isShowing {
-                                    AchievementView(playerScore: player.highestScore)
+                                }//VStack
+                                .padding(.vertical, 4)
+                                .padding(.horizontal, 16)
+                                .frame(minWidth: 128)
+                                .background(.black)
+                                .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                                        .stroke(.linearGradient(colors: [.white.opacity(1), .white.opacity(1)], startPoint: .topLeading, endPoint: .bottomTrailing)))
+                                .onTapGesture {
+                                    isShowing.toggle()
                                 }
                                 
-                            }//VStack
-                            .padding(.vertical, 4)
-                            .padding(.horizontal, 16)
-                            .frame(minWidth: 128)
-                            .background(.black)
-                            .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                    .stroke(.linearGradient(colors: [.white.opacity(1), .white.opacity(1)], startPoint: .topLeading, endPoint: .bottomTrailing)))
-                            .onTapGesture {
-                                isShowing.toggle()
-                            }
-                            
-                    }
-            
-            Spacer()
+                        }
                 
-            }//VStack
-            .padding()
+                Spacer()
+                    
+                }//VStack
+                .padding()
+            }
+           
             
         }//ZStack
         .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
