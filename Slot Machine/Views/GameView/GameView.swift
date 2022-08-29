@@ -24,6 +24,7 @@ struct GameView: View {
     @State public var playerName: String = ""
     @State public var highestScore: Int = 0
     @State private var animatingModal: Bool = false
+    @State private var disableSpin: Bool = false
     
     @Binding var isOpen: Bool
     @Binding var leaderboardList: [Player]
@@ -76,7 +77,7 @@ struct GameView: View {
                 
                 
                 // MARK: - SLOT MACHINE
-                SlotMachineView(showingModal: $showingModal, coins: $coins, highestScore: $highestScore, isChallenging: $isChallenging).padding()
+                SlotMachineView( disableSpin: $disableSpin, showingModal: $showingModal, coins: $coins, highestScore: $highestScore, isChallenging: $isChallenging).padding()
                 
                 Spacer()
                 
@@ -130,6 +131,7 @@ struct GameView: View {
                               self.showingModal = false
                               self.animatingModal = false
                               self.coins = 100
+                              self.disableSpin = false
                               
                               //Add player to leaderboard
                               if self.highestScore > 100 {

@@ -24,6 +24,7 @@ struct SlotMachineView: View {
     @State private var animatingSymbol: Bool = false
     @State private var karma: Int = 0
     
+    @Binding var disableSpin: Bool
     @Binding var showingModal: Bool
     @Binding public var coins: Int
     @Binding public var highestScore: Int
@@ -120,6 +121,7 @@ struct SlotMachineView: View {
             showingModal = true
             pityCount = 0
             karma = 0
+            disableSpin = true
             playSound(sound: "game-over", type: "mp3")
         }
     }
@@ -187,6 +189,8 @@ struct SlotMachineView: View {
                             .frame(minWidth: 100, idealWidth: 160, maxWidth: 180, minHeight: 75, idealHeight: 95, maxHeight: 115, alignment: .center)
                             .shadow(radius: 5)
                     }
+                    .disabled(disableSpin)
+                    
                 }// HStack
                 .padding(.top, 30)
             }
@@ -198,6 +202,6 @@ struct SlotMachineView: View {
 
 struct SlotMachineView_Previews: PreviewProvider {
     static var previews: some View {
-        SlotMachineView(showingModal: .constant(true), coins: .constant(100), highestScore: .constant(0), isChallenging: .constant(true))
+        SlotMachineView(disableSpin: .constant(false), showingModal: .constant(true), coins: .constant(100), highestScore: .constant(0), isChallenging: .constant(true) )
     }
 }
