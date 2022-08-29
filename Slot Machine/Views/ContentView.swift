@@ -1,9 +1,17 @@
-//
-//  ContentView.swift
-//  Slot Machine
-//
-//  Created by Thinh, Nguyen Truong on 16/08/2022.
-//
+/*
+  RMIT University Vietnam
+  Course: COSC2659 iOS Development
+  Semester: 2022B
+  Assessment: Assignment 2
+  Author: Nguyen Truong Thinh
+  ID: s3777196
+  Created by Thinh, Nguyen Truong on 16/08/2022.
+  Last modified: 29/08/2022
+  Acknowledgement:
+ https://www.youtube.com/watch?v=h4vyOz4Tztg&t=3589s
+ https://github.com/TomHuynhSG/RMIT-Casino.git
+*/
+
 
 import SwiftUI
 import RiveRuntime
@@ -14,9 +22,9 @@ struct ContentView: View {
     @State var menuOption: String = "Home"
     @State var isGameView = false
     @State var isOpen = false
+    @State var isChallenging = false
     
     let menuButton = RiveViewModel(fileName: "menu_button", stateMachineName: "State Machine", autoPlay: false)
-    
     
     // MARK: - BODY
     var body: some View {
@@ -24,7 +32,7 @@ struct ContentView: View {
             ZStack{
                 Color(.black).ignoresSafeArea()
                 
-                MenuView(menuOption: $menuOption)
+                MenuView(menuOption: $menuOption, isChallenging: $isChallenging)
                     .opacity(isOpen ? 1 : 0)
                     .offset(x: isOpen ? 0 : -300)
                     .rotation3DEffect(.degrees(isOpen ? 0 : 30), axis: (x: 0, y: -1, z: 0))
@@ -32,7 +40,7 @@ struct ContentView: View {
                 
                 switch menuOption{
                 case "Home":
-                    GameView(isOpen: $isOpen, leaderboardList: $leaderboardList)
+                    GameView(isOpen: $isOpen, leaderboardList: $leaderboardList, isChallenging: $isChallenging)
                 case "LeaderBoard":
                     LeaderBoardView(isOpen: $isOpen, leaderboardList: $leaderboardList)
                 case "Help":

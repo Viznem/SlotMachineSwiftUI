@@ -1,15 +1,22 @@
-//
-//  MenuView.swift
-//  Slot Machine
-//
-//  Created by Thinh, Nguyen Truong on 17/08/2022.
-//
+/*
+  RMIT University Vietnam
+  Course: COSC2659 iOS Development
+  Semester: 2022B
+  Assessment: Assignment 2
+  Author: Nguyen Truong Thinh
+  ID: s3777196
+  Created by Thinh, Nguyen Truong on 16/08/2022.
+  Last modified: 29/08/2022
+  Acknowledgement: https://www.youtube.com/watch?v=h4vyOz4Tztg&t=3589s
+*/
 
 import SwiftUI
 import RiveRuntime
 struct MenuView: View {
+    // MARK: - PROPERTIES
     @State var selectedMenu: SelectedMenu = .home
     @Binding var menuOption: String
+    @Binding var isChallenging: Bool
     let icon = RiveViewModel(fileName: "icons", stateMachineName: "HOME_interactivity", artboardName: "HOME")
     
     var body: some View {
@@ -40,10 +47,13 @@ struct MenuView: View {
                         .opacity(0.5)
                         .padding(.horizontal)
                     
+                    HStack{
+                        Toggle("Challenge Mode", isOn: $isChallenging).font(.headline)
+                    }.padding()
+                    
+                    
                         ForEach(menuItems) { item in
-                           
                             MenuRow(item: item, selectedMenu: $selectedMenu, menuOption: $menuOption)
-                         
                         }
                     
 
@@ -80,9 +90,9 @@ enum SelectedMenu: String {
     case help
 }
 
-//struct MenuView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MenuView()
-//    }
-//}
+struct MenuView_Previews: PreviewProvider {
+    static var previews: some View {
+        MenuView(menuOption: .constant("Home"), isChallenging: .constant(false))
+    }
+}
 

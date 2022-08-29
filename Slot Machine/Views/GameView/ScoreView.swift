@@ -1,9 +1,14 @@
-//
-//  ScoreView.swift
-//  Slot Machine
-//
-//  Created by Thinh, Nguyen Truong on 16/08/2022.
-//
+/*
+  RMIT University Vietnam
+  Course: COSC2659 iOS Development
+  Semester: 2022B
+  Assessment: Assignment 2
+  Author: Nguyen Truong Thinh
+  ID: s3777196
+  Created by Thinh, Nguyen Truong on 16/08/2022.
+  Last modified: 29/08/2022
+  Acknowledgement: https://www.youtube.com/watch?v=h4vyOz4Tztg&t=3589s
+*/
 
 import SwiftUI
 
@@ -14,6 +19,8 @@ struct ScoreView: View {
     var body: some View {
         
         HStack{
+            
+            // Current Player Score
             HStack {
               Text("Your\nScore".uppercased())
                     .foregroundColor(Color.yellow)
@@ -37,8 +44,8 @@ struct ScoreView: View {
             
             Spacer()
             
+            // Higest Player score in this round
             HStack {
-                
               Text("\(highestScore)")
                       .foregroundColor(Color.yellow)
                       .font(.system(.title, design: .rounded))

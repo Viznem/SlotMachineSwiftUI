@@ -1,16 +1,23 @@
-//
-//  GameView.swift
-//  Slot Machine
-//
-//  Created by Thinh, Nguyen Truong on 19/08/2022.
-//
+/*
+  RMIT University Vietnam
+  Course: COSC2659 iOS Development
+  Semester: 2022B
+  Assessment: Assignment 2
+  Author: Nguyen Truong Thinh
+  ID: s3777196
+  Created by Thinh, Nguyen Truong on 16/08/2022.
+  Last modified: 29/08/2022
+  Acknowledgement:
+ https://www.youtube.com/watch?v=h4vyOz4Tztg&t=3589s
+ https://github.com/TomHuynhSG/RMIT-Casino.git
+*/
 
 import SwiftUI
 
 
 
 struct GameView: View {
-    
+    // MARK: - PROPERTIES
     @State private var showingInfoView: Bool = false
     @State private var showingModal: Bool = false
     @State private var coins: Int = 100
@@ -20,6 +27,7 @@ struct GameView: View {
     
     @Binding var isOpen: Bool
     @Binding var leaderboardList: [Player]
+    @Binding var isChallenging: Bool
     
     func resetGame(){
         highestScore = 0
@@ -48,6 +56,12 @@ struct GameView: View {
                             .font(.title)
                             .accentColor(Color.black)
                     }
+                    
+                    if isChallenging{
+                        Text("Challenge Mode On")
+                            .fontWeight(.heavy)
+                            .foregroundColor(Color("ColorDark"))
+                    }
                  
                     //Info button
                     Button(action: {
@@ -62,14 +76,11 @@ struct GameView: View {
                 
                 
                 // MARK: - SLOT MACHINE
-                SlotMachineView(showingModal: $showingModal, coins: $coins, highestScore: $highestScore).padding()
+                SlotMachineView(showingModal: $showingModal, coins: $coins, highestScore: $highestScore, isChallenging: $isChallenging).padding()
                 
                 Spacer()
                 
-            
             }//VStack
-            
-            
             
             // MARK: - POPUP MODAL
             if self.showingModal{
@@ -107,7 +118,7 @@ struct GameView: View {
                                 TextField("Enter player name", text: $playerName)
                                       .padding(12)
                                       .background(.white)
-                                      .mask(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                                      .foregroundColor(Color("ColorPurple"))
                                       .overlay(RoundedRectangle(cornerRadius: 10, style: .continuous)
                                           .stroke()
                                           .fill(.pink))
@@ -120,11 +131,12 @@ struct GameView: View {
                               self.animatingModal = false
                               self.coins = 100
                               
+                              //Add player to leaderboard
                               if self.highestScore > 100 {
                                   if playerName != "" {
                                       leaderboardList.append(Player(name: self.playerName, highestScore: self.highestScore))
                                   }else{
-                                      leaderboardList.append(Player(name: "Anonymous", highestScore: self.highestScore))
+                                      leaderboardList.append(Player(name: "???", highestScore: self.highestScore))
                                   }
                               }
                              
@@ -151,8 +163,8 @@ struct GameView: View {
                     .frame(minWidth: 280, idealWidth: 280, maxWidth: 320, minHeight: 260, idealHeight: 280, maxHeight: 320, alignment: .top)
                     .background(.white)
                     .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                    .shadow(color: Color("Shadow").opacity(0.3), radius: 5, x: 0, y: 3)
-                    .shadow(color: Color("Shadow").opacity(0.3), radius: 30, x: 0, y: 30)
+                    .shadow(color: Color("ColorTransparentBlack").opacity(0.3), radius: 5, x: 0, y: 3)
+                    .shadow(color: Color("ColorTransparentBlack").opacity(0.3), radius: 30, x: 0, y: 30)
                     .overlay(
                         RoundedRectangle(cornerRadius: 20, style: .continuous)
                             .stroke(.linearGradient(colors: [.white.opacity(0.8), .white.opacity(0.1)], startPoint: .topLeading, endPoint: .bottomTrailing)))
@@ -180,7 +192,7 @@ struct GameView: View {
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView(isOpen: .constant(false), leaderboardList: .constant([Player(name: "Thinh", highestScore: 999999)]))
+        GameView(isOpen: .constant(false), leaderboardList: .constant([Player(name: "Thinh", highestScore: 999999)]), isChallenging: .constant(true))
             .previewInterfaceOrientation(.portrait)
     }
 }
